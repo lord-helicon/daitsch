@@ -33,4 +33,4 @@ Der vollständige Katalog mit rund 75 Mustern, den Ausnahmen und einem Prüfskri
 `daitsch` (references/katalog.md, scripts/klartext.py). Wo das Skript vorhanden ist:
 `python3 scripts/klartext.py <datei>` vor der Abgabe laufen lassen und jeden harten Fund beheben.
 
-Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von Tobias Voßberg, www.iplaw.lol/ki-floskeln.
+Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von Tobias Voßberg, www.iplaw.lol/ki-floskeln, verwendet mit seiner Zustimmung. Diese Datei steht unter CC BY 4.0; bei Weitergabe bitte beide Quellen nennen.

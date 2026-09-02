@@ -4,6 +4,14 @@ Ein Skill für KI-Agenten, der deutsche Texte davon abhält, nach KI zu klingen.
 
 Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von **Tobias Voßberg**, [www.iplaw.lol/ki-floskeln](https://www.iplaw.lol/ki-floskeln/). Von dort stammen die rund 75 Muster. Hinzugekommen sind hier die Klartext-Fassungen, die Ausnahmen und der Prüfer.
 
+## Zum Namen
+
+Die pfälzische Wikipedia beginnt ihren Artikel über die deutsche Sprache mit den Worten: „Die Daitsch Sprooch (kerz: Daitsch) is e germanische Sprooch.“<sup>[1]</sup>
+
+Aus diesem Daitsch und dem AI in der Mitte wird dAItsch.
+
+<sup>[1]</sup> [Deutsche Sprache](https://pfl.wikipedia.org/wiki/Deutsche_Sprache), Pälzische Wikipedia, CC BY-SA 4.0.
+
 ## Was der Skill tut
 
 Er kennt drei Modi. Beim Schreiben hält er die Muster von vornherein aus dem Text. Beim Prüfen meldet er Fundstellen mit Muster-ID, ohne die Datei anzufassen. Beim Überarbeiten schreibt er um und berichtet am Ende, was er bewusst stehen ließ.
@@ -78,6 +86,12 @@ Der Selbsttest fängt kaputte Einträge ab. Er prüft, dass jeder Ausdruck kompi
 ```bash
 python3 scripts/klartext.py --selbsttest
 ```
+
+## Lizenz
+
+Der Code (`scripts/`, `install.sh`, `install.ps1`) steht unter der MIT-Lizenz, siehe [LICENSE](LICENSE).
+
+Die Textteile (`SKILL.md`, `references/`, `adapters/`, `tests/`) stehen unter CC BY 4.0, siehe [LICENSE-CONTENT.md](LICENSE-CONTENT.md). Die zugrunde liegende Mustersammlung stammt von Tobias Voßberg; Veröffentlichung und Lizenzwahl erfolgen mit seiner Zustimmung.
 
 ## Aufbau
 
