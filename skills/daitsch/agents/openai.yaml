@@ -1,0 +1,4 @@
+interface:
+  display_name: "/daitsch"
+  short_description: "Deutsche Texte schreiben, prüfen und überarbeiten, ohne dass sie nach KI klingen."
+  default_prompt: "Nutze $daitsch, um die KI-Floskeln aus diesem Text zu entfernen und mir zu sagen, was du bewusst stehen lässt."

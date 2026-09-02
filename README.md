@@ -31,6 +31,14 @@ Ohne Aufruf greift der Skill selbst, sobald die Beschreibung passt: bei deutsche
 
 ## Installation
 
+Am kürzesten über den Skill-Installer, ohne das Repository zu klonen:
+
+```bash
+npx skills add lord-helicon/daitsch --skill daitsch --global --yes
+```
+
+Oder aus dem geklonten Repository:
+
 ```bash
 bash install.sh
 ```
@@ -40,6 +48,8 @@ bash install.sh
 ```
 
 Beide Skripte legen den Skill im vorhandenen Skill-Ordner ab (`~/.agents/skills/` oder `~/.claude/skills/`) und lassen anschließend den Selbsttest laufen. Mit `--ziel <pfad>` beziehungsweise `-Ziel <pfad>` geht es in einen beliebigen anderen Ordner.
+
+Für Codex liegt ein Plugin-Manifest in `.codex-plugin/plugin.json`.
 
 ## Andere Agenten
 
@@ -57,18 +67,18 @@ Die Dateien in `adapters/` sind aus dem KERN-Block von `SKILL.md` erzeugt und ei
 Nach einer Änderung an `SKILL.md`:
 
 ```bash
-python3 scripts/build_adapters.py
+python3 tools/build_adapters.py
 ```
 
 ## Prüfer
 
 ```bash
-python3 scripts/klartext.py text.md              # Befund, Exit 1 bei Funden
-python3 scripts/klartext.py text.md --json       # maschinenlesbar für Agenten
-python3 scripts/klartext.py --haerte hart *.md   # nur eindeutige Funde
-python3 scripts/klartext.py --regeln             # alle Muster auflisten
-python3 scripts/klartext.py --selbsttest         # Katalog und Testtexte prüfen
-cat text.txt | python3 scripts/klartext.py -     # aus der Standardeingabe
+python3 skills/daitsch/scripts/klartext.py text.md              # Befund, Exit 1 bei Funden
+python3 skills/daitsch/scripts/klartext.py text.md --json       # maschinenlesbar für Agenten
+python3 skills/daitsch/scripts/klartext.py --haerte hart *.md   # nur eindeutige Funde
+python3 skills/daitsch/scripts/klartext.py --regeln             # alle Muster auflisten
+python3 skills/daitsch/scripts/klartext.py --selbsttest         # Katalog und Testtexte prüfen
+cat text.txt | python3 skills/daitsch/scripts/klartext.py -     # aus der Standardeingabe
 ```
 
 Nur Standardbibliothek, kein pip. Das Skript ändert nie eine geprüfte Datei; es meldet, der Agent formuliert um.
@@ -79,13 +89,17 @@ Harte Funde sind eindeutig und ohne Kontexturteil zu beheben, etwa Geviertstrich
 
 ## Katalog erweitern
 
-Alle Regeln stehen in `references/katalog.md`, auch die des Prüfers. Er liest die Datei beim Start und hat keine eigene Wortliste, deshalb wird eine neue Floskel an genau einer Stelle ergänzt. Der Aufbau eines Eintrags steht oben in derselben Datei.
+Alle Regeln stehen in `skills/daitsch/references/katalog.md`, auch die des Prüfers. Er liest die Datei beim Start und hat keine eigene Wortliste, deshalb wird eine neue Floskel an genau einer Stelle ergänzt. Der Aufbau eines Eintrags steht oben in derselben Datei.
 
-Der Selbsttest fängt kaputte Einträge ab. Er prüft, dass jeder Ausdruck kompiliert, dass jede Regel ihr eigenes Floskel-Beispiel findet, dass kein Klartext-Beispiel einen harten Fund auslöst, dass jede Metrik von einem Testtext ausgelöst wird und dass `tests/klartext.md` ohne Fund bleibt.
+Der Selbsttest fängt kaputte Einträge ab. Er prüft, dass jeder Ausdruck kompiliert, dass jede Regel ihr eigenes Floskel-Beispiel findet, dass kein Klartext-Beispiel einen harten Fund auslöst, dass jede Metrik von einem Testtext ausgelöst wird und dass `tests/klartext.md` im Skillordner ohne Fund bleibt.
 
 ```bash
-python3 scripts/klartext.py --selbsttest
+python3 skills/daitsch/scripts/klartext.py --selbsttest
 ```
+
+## Anregungen
+
+Der Aufbau als Skill mit Prüfliste, der Gedanke, beim Überarbeiten zuerst die Stimme des Autors zu sichern, und der Portabilitätstest stammen aus [no-ai-slop](https://github.com/petergyang/no-ai-slop) von Peter Yang (MIT). Übernommen sind die Gedanken, nicht der Text.
 
 ## Lizenz
 
@@ -96,10 +110,13 @@ Die Textteile (`SKILL.md`, `references/`, `adapters/`, `tests/`) stehen unter CC
 ## Aufbau
 
 ```
-SKILL.md                  Kanonische Quelle im offenen Agent-Skills-Format
-references/katalog.md     Rund 75 Muster, zugleich Regelquelle des Prüfers
-scripts/klartext.py       Prüfer
-scripts/build_adapters.py Erzeugt adapters/ aus dem KERN-Block
-tests/                    Testtexte für den Selbsttest
+skills/daitsch/
+  SKILL.md                Kanonische Quelle im offenen Agent-Skills-Format
+  references/katalog.md   74 Muster, zugleich Regelquelle des Prüfers
+  references/pruefliste.md  Fragen nach dem Überarbeiten, die kein Ausdruck stellt
+  scripts/klartext.py     Prüfer
+  tests/                  Testtexte für den Selbsttest
 adapters/                 Erzeugt, eingecheckt
+tools/build_adapters.py   Erzeugt adapters/ aus dem KERN-Block
+.codex-plugin/            Plugin-Manifest für Codex
 ```

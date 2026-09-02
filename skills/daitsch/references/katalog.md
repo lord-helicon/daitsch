@@ -390,6 +390,22 @@ abbild*
 
 **Zulässig:** Im Interview und in der wörtlichen Rede.
 
+### doppelpunkt-enthuellung
+
+**Erkennung:** Kurze Nominalphrase, Doppelpunkt, kleingeschriebene Auflösung. Der Doppelpunkt ersetzt den Satzbau und kündigt eine Pointe an, die der Inhalt nicht einlöst.
+
+**Härte:** weich
+
+```regex
+(?:^|(?<=[.!?]\s))(?:Der|Die|Das|Ein|Eine)\s+[\wäöüß]+(?:\s+[\wäöüß]+){0,2}:\s+[a-zäöüß][^.!?\n]{2,40}[.!?]
+```
+
+**Floskel:** Das Beste daran: es lernt mit jedem Durchlauf dazu.
+
+**Klartext:** Mit jedem Durchlauf sinkt die Fehlerquote.
+
+**Zulässig:** Vor einer Aufzählung, vor einem Zitat und dort, wo der Doppelpunkt eine Bezeichnung einführt.
+
 ### anapher-mechanisch
 
 **Erkennung:** Mehrere Sätze in Folge beginnen gleich, sodass der Text wie eine Rede klingt.

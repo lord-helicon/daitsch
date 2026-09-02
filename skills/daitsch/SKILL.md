@@ -30,11 +30,16 @@ Diese Griffe decken den größten Teil ab. Alles Weitere steht im Katalog.
 | Gerne, hier ist eine Übersicht … Gerne passe ich den Text an | Kein Rahmen um die Antwort. Weder davor noch danach. |
 | Geviertstrich, gerade Anführungszeichen, Pfeile, Emoji als Gliederung, fett beginnende Listenpunkte | Halbgeviertstrich sparsam, deutsche Anführungszeichen, gewöhnliche Sätze und Listen. |
 
-Zwei Regeln stehen über den Mustern:
+Drei Regeln stehen über den Mustern:
 
 1. Bedeutung schlägt Musterfreiheit. Eine sachlich nötige Einschränkung bleibt stehen, auch wenn sie wie eine Absicherung aussieht.
 2. Die Klartext-Fassung ist nie länger als die Floskel. Wer streicht und nichts Prüfbares einsetzen kann, streicht den Satz.
+3. Der Portabilitätstest fängt, was keine Liste kennt: Passt ein Satz unverändert auf eine andere Firma, eine andere Person oder ein anderes Produkt, ist er Füllung. Dann muss eine Tatsache, ein Beispiel, eine Folge oder ein Urteil hinein, das nur hierher passt.
 <!-- KERN:end -->
+
+## Wenn die Textsorte unklar ist
+
+Register, Anrede und erlaubte Muster hängen im Deutschen davon ab, für wen der Text ist. Ist das aus dem Auftrag nicht zu erkennen, wird genau eine Frage gestellt: Für wen ist der Text und wo erscheint er? Danach wird gearbeitet, ohne weitere Rückfragen.
 
 ## Modus Schreiben
 
@@ -59,12 +64,15 @@ Fertig ist die Prüfung, wenn jeder gemeldete Fund in der Tabelle steht oder mit
 
 ## Modus Überarbeiten
 
-1. Prüfen wie oben.
-2. Umschreiben, Fund für Fund, nach der Klartext-Spalte des jeweiligen Katalogeintrags.
-3. Erneut prüfen.
-4. Am Ende in drei Zeilen berichten: was geändert wurde, was bewusst stehen blieb und warum, und welche Stelle inhaltlich unklar war und eine Entscheidung des Autors braucht.
+1. Den ganzen Text lesen und die Stimme des Autors bestimmen: Wortwahl, Satzrhythmus, Schärfe, Humor, zugegebene Unsicherheit, Umwege. Diese Merkmale bleiben.
+2. Prüfen wie oben.
+3. Umschreiben, Fund für Fund, nach der Klartext-Spalte des jeweiligen Katalogeintrags. So wenig wie möglich: Ein starker Satz bleibt stehen, auch wenn er aus der Reihe fällt.
+4. Erneut prüfen, dann [`references/pruefliste.md`](references/pruefliste.md) durchgehen. Bei einem Nein nachbessern und die Liste erneut durchgehen.
+5. Am Ende in drei Zeilen berichten: was geändert wurde, was bewusst stehen blieb und warum, und welche Stelle inhaltlich unklar war und eine Entscheidung des Autors braucht.
 
-Beim Umschreiben verschwindet die Floskel, nicht die Information. Wo eine Floskel eine fehlende Zahl verdeckt, wird die Lücke benannt statt mit einer anderen Floskel gefüllt.
+Beim Umschreiben verschwindet die Floskel, nicht die Information. Wo eine Floskel eine fehlende Zahl verdeckt, wird die Lücke benannt statt mit einer anderen Floskel gefüllt. Nichts kommt hinzu, was nicht im Original stand: keine Zahl, kein Beispiel, keine Quelle, keine Meinung.
+
+Ein musterfreier Text kann trotzdem verdorben sein, wenn er wie jeder andere klingt. Die Muster gehen, der Autor bleibt.
 
 ## Ohne Shell
 
