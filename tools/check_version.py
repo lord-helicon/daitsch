@@ -54,13 +54,20 @@ def main(argv: list[str]) -> int:
         fehler.append(f"plugin.json nennt {name!r}, aber skills/{name}/SKILL.md gibt es nicht.")
 
     version = str(manifest.get("version", ""))
-    tag = argv[1] if len(argv) > 1 else neuester_tag()
+    ausdruecklich = len(argv) > 1
+    tag = argv[1] if ausdruecklich else neuester_tag()
+    hinweis = ""
 
     if tag is None:
-        print(f"plugin.json steht auf {version}. Noch kein Tag vorhanden, nichts zu vergleichen.")
-    else:
-        if version != tag.lstrip("v"):
-            fehler.append(f"Tag {tag} und plugin.json {version} passen nicht zusammen.")
+        hinweis = f"plugin.json steht auf {version}. Noch kein Tag vorhanden, nichts zu vergleichen."
+    elif version != tag.lstrip("v"):
+        satz = f"Tag {tag} und plugin.json {version} passen nicht zusammen."
+        if ausdruecklich:
+            # Beim Taggen ist die Abweichung ein Fehler.
+            fehler.append(satz)
+        else:
+            # Zwischen Versionssprung und Tag ist sie der normale Zustand.
+            hinweis = f"{satz} Solange der Tag noch fehlt, ist das erwartet."
 
     if fehler:
         print("Versionsprüfung fehlgeschlagen:\n", file=sys.stderr)
@@ -68,7 +75,9 @@ def main(argv: list[str]) -> int:
             print(f"  - {eintrag}", file=sys.stderr)
         return 1
 
-    if tag is not None:
+    if hinweis:
+        print(hinweis)
+    elif tag is not None:
         print(f"Versionsprüfung bestanden: Tag {tag} und plugin.json {version} passen zusammen.")
     return 0
 

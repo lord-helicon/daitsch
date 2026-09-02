@@ -1,6 +1,6 @@
 {
   "name": "daitsch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Entfernt 74 Muster aus deutschen Texten, an denen KI-Sprache erkennbar ist.",
   "author": {
     "name": "Alexander Rolli",
