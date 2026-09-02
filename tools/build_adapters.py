@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Erzeugt aus dem KERN-Block in SKILL.md die Adapterdateien für andere Agenten.
 
-    python3 scripts/build_adapters.py
+    python3 tools/build_adapters.py
 
 Die erzeugten Dateien liegen in adapters/ und sind eingecheckt, damit sie ohne
 Python benutzbar sind. Geändert wird immer SKILL.md, nie ein Adapter.
@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-SKILL = WURZEL / "SKILL.md"
+SKILL = WURZEL / "skills" / "daitsch" / "SKILL.md"
 ZIEL = WURZEL / "adapters"
 
 HINWEIS = "<!-- Erzeugt aus SKILL.md durch scripts/build_adapters.py. Änderungen gehören in SKILL.md. -->"
@@ -78,8 +78,8 @@ def main() -> int:
 {kern}
 
 Der vollständige Katalog mit rund 75 Mustern, den Ausnahmen und einem Prüfskript steht im Skill
-`daitsch` (references/katalog.md, scripts/klartext.py). Wo das Skript vorhanden ist:
-`python3 scripts/klartext.py <datei>` vor der Abgabe laufen lassen und jeden harten Fund beheben.
+`daitsch` (references/katalog.md, scripts/klartext.py im Skillordner). Wo das Skript vorhanden ist:
+`python3 skills/daitsch/scripts/klartext.py <datei>` vor der Abgabe laufen lassen und jeden harten Fund beheben.
 
 {HERKUNFT}
 """

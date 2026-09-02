@@ -23,10 +23,11 @@ foreach ($ordner in @("references", "scripts", "tests")) {
     if (Test-Path $pfad) { Remove-Item -Recurse -Force $pfad }
 }
 
-Copy-Item (Join-Path $Quelle "SKILL.md") (Join-Path $Ziel "SKILL.md") -Force
-Copy-Item (Join-Path $Quelle "references") $Ziel -Recurse -Force
-Copy-Item (Join-Path $Quelle "scripts") $Ziel -Recurse -Force
-Copy-Item (Join-Path $Quelle "tests") $Ziel -Recurse -Force
+$QuellSkill = Join-Path $Quelle "skills\$Name"
+Copy-Item (Join-Path $QuellSkill "SKILL.md") (Join-Path $Ziel "SKILL.md") -Force
+Copy-Item (Join-Path $QuellSkill "references") $Ziel -Recurse -Force
+Copy-Item (Join-Path $QuellSkill "scripts") $Ziel -Recurse -Force
+Copy-Item (Join-Path $QuellSkill "tests") $Ziel -Recurse -Force
 Write-Host "Installiert nach $Ziel"
 
 $python = Get-Command python -ErrorAction SilentlyContinue

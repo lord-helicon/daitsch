@@ -1,0 +1,28 @@
+{
+  "name": "daitsch",
+  "version": "1.0.0",
+  "description": "Entfernt 74 Muster aus deutschen Texten, an denen KI-Sprache erkennbar ist.",
+  "author": {
+    "name": "Alexander Rolli",
+    "url": "https://github.com/lord-helicon"
+  },
+  "homepage": "https://github.com/lord-helicon/daitsch",
+  "repository": "https://github.com/lord-helicon/daitsch",
+  "license": "MIT",
+  "keywords": ["deutsch", "german", "writing", "editing", "KI-Floskeln"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "dAItsch",
+    "shortDescription": "Deutsche Texte ohne KI-Floskeln",
+    "longDescription": "Deutsche KI-Texte sind an wiederkehrenden Mustern erkennbar: „nicht X, sondern Y“, Mehrwert, sauber strukturiert, Geviertstriche, der hohle Schlusssatz.\n\ndAItsch kennt 74 davon. Zu jedem Muster gehört eine Klartext-Fassung und die Fälle, in denen das Muster richtig ist, damit aus der Korrektur keine Überkorrektur wird.\n\nDrei Modi: schreiben, prüfen ohne den Text anzufassen, überarbeiten mit Bericht darüber, was bewusst stehen blieb. Ein Prüfskript meldet Fundstellen mit Zeilennummer.\n\nDie Mustersammlung stammt von Tobias Voßberg (www.iplaw.lol/ki-floskeln) und wird mit seiner Zustimmung verwendet.",
+    "developerName": "Alexander Rolli",
+    "category": "Productivity",
+    "capabilities": ["Schreiben", "Prüfen", "Überarbeiten"],
+    "websiteURL": "https://github.com/lord-helicon/daitsch",
+    "defaultPrompt": [
+      "(Text)",
+      "prüfe diesen Text: (Text)",
+      "überarbeite und sag mir, was du stehen lässt: (Text)"
+    ]
+  }
+}

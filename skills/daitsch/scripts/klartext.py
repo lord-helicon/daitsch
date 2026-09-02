@@ -189,13 +189,24 @@ FETT = re.compile(r"\*\*[^*\n]+\*\*")
 DREIERGRUPPE = re.compile(r"\b[\wäöüß]{3,},\s+[\wäöüß]{3,}\s+und\s+[\wäöüß]{3,}\b")
 
 
+LISTENZEILE = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s")
+
+
+def _ist_liste(block: str) -> bool:
+    """Eine Aufzählung ist zu Recht gleichförmig und zählt nicht als Absatz."""
+    zeilen = [z for z in block.splitlines() if z.strip()]
+    if not zeilen:
+        return False
+    return sum(bool(LISTENZEILE.match(z)) for z in zeilen) * 2 >= len(zeilen)
+
+
 def absaetze_von(text: str) -> list[tuple[int, str]]:
-    """Absätze als (Zeilennummer, Text). Überschriften und Tabellen bleiben draußen."""
+    """Absätze als (Zeilennummer, Text). Überschriften, Tabellen und Listen bleiben draußen."""
     ergebnis = []
     zeile = 1
     for block in re.split(r"\n\s*\n", text):
         inhalt = block.strip()
-        if inhalt and not inhalt.startswith("#") and not inhalt.startswith("|"):
+        if inhalt and not inhalt.startswith("#") and not inhalt.startswith("|") and not _ist_liste(inhalt):
             versatz = block.index(inhalt.split("\n")[0])
             ergebnis.append((zeile + block[:versatz].count("\n"), inhalt))
         zeile += block.count("\n") + 2

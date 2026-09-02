@@ -52,6 +52,8 @@ Input → Verarbeitung → Output
 
 Der Zugriff ist **streng limitiert** und die Freigabe erfolgt **ausschließlich** durch die Fachabteilung. Die Prüfung ist **verpflichtend** und wird **jährlich** wiederholt.
 
+Die Umstellung ist **verbindlich** und betrifft **alle** Abteilungen ab dem ersten Quartal.
+
 Es zeigt sich, dass Unternehmen handeln müssen. Im Kern geht es um Vertrauen. Es bleibt abzuwarten, wie sich die Praxis entwickelt.
 
 Das bedeutet nicht, dass Unternehmen auf KI verzichten müssen. Es kommt auf einen verantwortungsvollen Umgang an.

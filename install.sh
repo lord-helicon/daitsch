@@ -30,10 +30,11 @@ fi
 
 mkdir -p "$ZIEL"
 rm -rf "${ZIEL:?}/references" "${ZIEL:?}/scripts" "${ZIEL:?}/tests"
-cp "$QUELLE/SKILL.md" "$ZIEL/SKILL.md"
-cp -R "$QUELLE/references" "$ZIEL/references"
-cp -R "$QUELLE/scripts" "$ZIEL/scripts"
-cp -R "$QUELLE/tests" "$ZIEL/tests"
+QUELLSKILL="$QUELLE/skills/$NAME"
+cp "$QUELLSKILL/SKILL.md" "$ZIEL/SKILL.md"
+cp -R "$QUELLSKILL/references" "$ZIEL/references"
+cp -R "$QUELLSKILL/scripts" "$ZIEL/scripts"
+cp -R "$QUELLSKILL/tests" "$ZIEL/tests"
 echo "Installiert nach $ZIEL"
 
 # Wo Skills unter ~/.agents liegen und ~/.claude/skills darauf verweist, den Verweis nachziehen.
