@@ -29,12 +29,16 @@ if [ -z "$ZIEL" ]; then
 fi
 
 mkdir -p "$ZIEL"
-rm -rf "${ZIEL:?}/references" "${ZIEL:?}/scripts" "${ZIEL:?}/tests"
 QUELLSKILL="$QUELLE/skills/$NAME"
 cp "$QUELLSKILL/SKILL.md" "$ZIEL/SKILL.md"
-cp -R "$QUELLSKILL/references" "$ZIEL/references"
-cp -R "$QUELLSKILL/scripts" "$ZIEL/scripts"
-cp -R "$QUELLSKILL/tests" "$ZIEL/tests"
+
+# Jeden Unterordner des Skills mitnehmen. Eine feste Liste vergisst den nächsten.
+for unterordner in "$QUELLSKILL"/*/; do
+  [ -d "$unterordner" ] || continue
+  ordnername="$(basename "$unterordner")"
+  rm -rf "${ZIEL:?}/$ordnername"
+  cp -R "$unterordner" "$ZIEL/$ordnername"
+done
 echo "Installiert nach $ZIEL"
 
 # Wo Skills unter ~/.agents liegen und ~/.claude/skills darauf verweist, den Verweis nachziehen.

@@ -2,7 +2,9 @@
 
 Ein Skill für KI-Agenten, der deutsche Texte davon abhält, nach KI zu klingen. Herstellerneutral: eine Quelle, daraus Adapterdateien für die verbreiteten Agentenformate.
 
-Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von **Tobias Voßberg**, [www.iplaw.lol/ki-floskeln](https://www.iplaw.lol/ki-floskeln/). Von dort stammen die rund 75 Muster. Hinzugekommen sind hier die Klartext-Fassungen, die Ausnahmen und der Prüfer.
+Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von **Tobias Voßberg**, [www.iplaw.lol/ki-floskeln](https://www.iplaw.lol/ki-floskeln/), verwendet mit seiner Zustimmung. Seine Sammlung geht ihrerseits auf [tropes.fyi](https://tropes.fyi/) von Ossama zurück, ins Deutsche übertragen und um deutsche Muster ergänzt.
+
+Hinzugekommen sind hier die Klartext-Fassungen, die Angaben dazu, wann ein Muster zulässig ist, die maschinenlesbaren Erkennungsregeln und der Prüfer.
 
 ## Zum Namen
 

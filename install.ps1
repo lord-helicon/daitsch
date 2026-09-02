@@ -18,16 +18,16 @@ if ([string]::IsNullOrEmpty($Ziel)) {
 }
 
 New-Item -ItemType Directory -Force -Path $Ziel | Out-Null
-foreach ($ordner in @("references", "scripts", "tests")) {
-    $pfad = Join-Path $Ziel $ordner
-    if (Test-Path $pfad) { Remove-Item -Recurse -Force $pfad }
-}
 
 $QuellSkill = Join-Path $Quelle "skills\$Name"
 Copy-Item (Join-Path $QuellSkill "SKILL.md") (Join-Path $Ziel "SKILL.md") -Force
-Copy-Item (Join-Path $QuellSkill "references") $Ziel -Recurse -Force
-Copy-Item (Join-Path $QuellSkill "scripts") $Ziel -Recurse -Force
-Copy-Item (Join-Path $QuellSkill "tests") $Ziel -Recurse -Force
+
+# Jeden Unterordner des Skills mitnehmen. Eine feste Liste vergisst den naechsten.
+Get-ChildItem -Path $QuellSkill -Directory | ForEach-Object {
+    $pfad = Join-Path $Ziel $_.Name
+    if (Test-Path $pfad) { Remove-Item -Recurse -Force $pfad }
+    Copy-Item $_.FullName $Ziel -Recurse -Force
+}
 Write-Host "Installiert nach $Ziel"
 
 $python = Get-Command python -ErrorAction SilentlyContinue
