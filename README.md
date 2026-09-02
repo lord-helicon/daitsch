@@ -33,7 +33,13 @@ Ohne Aufruf greift der Skill selbst, sobald die Beschreibung passt: bei deutsche
 
 ## Installation
 
-Am kürzesten über den Skill-Installer, ohne das Repository zu klonen:
+Am einfachsten geht es, indem du diesen Satz in ChatGPT, Claude Code, Codex oder deinen Agenten einfügst:
+
+```text
+Installiere den Skill daitsch global von https://github.com/lord-helicon/daitsch
+```
+
+Oder über den Skill-Installer, ohne das Repository zu klonen:
 
 ```bash
 npx skills add lord-helicon/daitsch --skill daitsch --global --yes
