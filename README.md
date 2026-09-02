@@ -97,6 +97,12 @@ Der Selbsttest fängt kaputte Einträge ab. Er prüft, dass jeder Ausdruck kompi
 python3 skills/daitsch/scripts/klartext.py --selbsttest
 ```
 
+Dieselben Prüfungen laufen bei jedem Push über GitHub Actions, unter Python 3.9 und 3.12. Dazu wird geprüft, ob `adapters/` noch zu `SKILL.md` passt und ob die Version in `.codex-plugin/plugin.json` mit dem Tag übereinstimmt. Vor einem Release von Hand:
+
+```bash
+python3 tools/check_version.py v1.0.0
+```
+
 ## Anregungen
 
 Der Aufbau als Skill mit Prüfliste, der Gedanke, beim Überarbeiten zuerst die Stimme des Autors zu sichern, und der Portabilitätstest stammen aus [no-ai-slop](https://github.com/petergyang/no-ai-slop) von Peter Yang (MIT). Übernommen sind die Gedanken, nicht der Text.

@@ -1,0 +1,43 @@
+name: Prüfung
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  selbsttest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Katalog und Testtexte prüfen
+        run: python3 skills/daitsch/scripts/klartext.py --selbsttest
+      - name: Adapter sind auf dem Stand von SKILL.md
+        run: |
+          python3 tools/build_adapters.py
+          git diff --exit-code -- adapters/ || {
+            echo "adapters/ weicht von SKILL.md ab. Bitte tools/build_adapters.py laufen lassen und das Ergebnis einchecken."
+            exit 1
+          }
+
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Manifest und Tag vergleichen
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            python3 tools/check_version.py "${GITHUB_REF_NAME}"
+          else
+            python3 tools/check_version.py
+          fi
