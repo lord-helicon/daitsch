@@ -1,7 +1,12 @@
 # Lizenz der Textteile
 
-Gilt für `SKILL.md`, `references/`, `adapters/` und `tests/`.
-Für den Code gilt die MIT-Lizenz in `LICENSE`.
+Das Repository hat zwei Lizenzen.
+
+Unter der MIT-Lizenz in `LICENSE` stehen `skills/daitsch/scripts/`, `tools/`,
+`install.sh` und `install.ps1`.
+
+Unter der Lizenz auf dieser Seite stehen `skills/daitsch/SKILL.md`,
+`skills/daitsch/references/`, `skills/daitsch/tests/` und `adapters/`.
 
 ## Herkunft
 

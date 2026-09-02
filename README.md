@@ -109,7 +109,7 @@ Der Aufbau als Skill mit Prüfliste, der Gedanke, beim Überarbeiten zuerst die 
 
 ## Lizenz
 
-Der Code (`scripts/`, `install.sh`, `install.ps1`) steht unter der MIT-Lizenz, siehe [LICENSE](LICENSE).
+Der Code (`skills/daitsch/scripts/`, `tools/`, `install.sh`, `install.ps1`) steht unter der MIT-Lizenz, siehe [LICENSE](LICENSE).
 
 Die Textteile (`SKILL.md`, `references/`, `adapters/`, `tests/`) stehen unter CC BY 4.0, siehe [LICENSE-CONTENT.md](LICENSE-CONTENT.md). Die zugrunde liegende Mustersammlung stammt von Tobias Voßberg; Veröffentlichung und Lizenzwahl erfolgen mit seiner Zustimmung.
 
