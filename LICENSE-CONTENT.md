@@ -17,6 +17,10 @@ Die Sammlung der Sprachmuster, ihre Auswahl und ihre Anordnung stammen aus
 Die Veröffentlichung dieser Bearbeitung und die hier gewählte Lizenz erfolgen
 mit seiner Zustimmung.
 
+Seine Sammlung beruht nach eigener Angabe auf **tropes.fyi** von Ossama,
+<https://tropes.fyi/>, ins Deutsche übertragen und um deutsche Muster ergänzt.
+Die dortige Datei trägt den Vermerk „Source: tropes.fyi by ossama.is“.
+
 Hinzugekommen sind in diesem Repository die Klartext-Fassungen, die Angaben
 dazu, wann ein Muster zulässig ist, die Muster-IDs, die maschinenlesbaren
 Erkennungsregeln, die Testtexte und der Aufbau der drei Modi.

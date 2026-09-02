@@ -2,7 +2,9 @@
 
 Ein Skill für KI-Agenten, der deutsche Texte davon abhält, nach KI zu klingen. Herstellerneutral: eine Quelle, daraus Adapterdateien für die verbreiteten Agentenformate.
 
-Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von **Tobias Voßberg**, [www.iplaw.lol/ki-floskeln](https://www.iplaw.lol/ki-floskeln/). Von dort stammen die rund 75 Muster. Hinzugekommen sind hier die Klartext-Fassungen, die Ausnahmen und der Prüfer.
+Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von **Tobias Voßberg**, [www.iplaw.lol/ki-floskeln](https://www.iplaw.lol/ki-floskeln/), verwendet mit seiner Zustimmung. Seine Sammlung geht ihrerseits auf [tropes.fyi](https://tropes.fyi/) von Ossama zurück, ins Deutsche übertragen und um deutsche Muster ergänzt.
+
+Hinzugekommen sind hier die Klartext-Fassungen, die Angaben dazu, wann ein Muster zulässig ist, die maschinenlesbaren Erkennungsregeln und der Prüfer.
 
 ## Zum Namen
 
@@ -31,7 +33,13 @@ Ohne Aufruf greift der Skill selbst, sobald die Beschreibung passt: bei deutsche
 
 ## Installation
 
-Am kürzesten über den Skill-Installer, ohne das Repository zu klonen:
+Am einfachsten geht es, indem du diesen Satz in ChatGPT, Claude Code, Codex oder deinen Agenten einfügst:
+
+```text
+Installiere den Skill daitsch global von https://github.com/lord-helicon/daitsch
+```
+
+Oder über den Skill-Installer, ohne das Repository zu klonen:
 
 ```bash
 npx skills add lord-helicon/daitsch --skill daitsch --global --yes

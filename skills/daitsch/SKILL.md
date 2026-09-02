@@ -86,4 +86,4 @@ Der Katalog beschreibt Auffälligkeiten, keine Fehler. Fast jedes Muster ist irg
 
 ## Herkunft
 
-Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von Tobias Voßberg, [www.iplaw.lol/ki-floskeln](https://www.iplaw.lol/ki-floskeln/).
+Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von Tobias Voßberg, [www.iplaw.lol/ki-floskeln](https://www.iplaw.lol/ki-floskeln/), verwendet mit seiner Zustimmung. Seine Sammlung geht auf [tropes.fyi](https://tropes.fyi/) von Ossama zurück.
