@@ -20,7 +20,8 @@ ZIEL = WURZEL / "adapters"
 HINWEIS = "<!-- Erzeugt aus SKILL.md durch scripts/build_adapters.py. Änderungen gehören in SKILL.md. -->"
 HERKUNFT = (
     "Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von Tobias Voßberg, "
-    "www.iplaw.lol/ki-floskeln."
+    "www.iplaw.lol/ki-floskeln, verwendet mit seiner Zustimmung. Diese Datei steht unter CC BY 4.0; "
+    "bei Weitergabe bitte beide Quellen nennen."
 )
 EINSATZ = (
     "Gilt für jeden deutschen Text, der hier entsteht oder überarbeitet wird: Commit-Nachricht, "
