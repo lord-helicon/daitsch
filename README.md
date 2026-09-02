@@ -111,6 +111,18 @@ Dieselben Prüfungen laufen bei jedem Push über GitHub Actions, unter Python 3.
 python3 tools/check_version.py v1.0.0
 ```
 
+## Folien aus dem Katalog
+
+Für Beiträge auf LinkedIn erzeugt `tools/karussell.py` ein PDF, das dort als blätterbares Dokument läuft. Eine Seite je Muster, oben die Floskel, unten die Klartext-Fassung.
+
+```bash
+python3 tools/karussell.py
+python3 tools/karussell.py --muster sauber,dient-als --ziel folien.pdf
+python3 tools/karussell.py --liste
+```
+
+Die Folien entstehen aus `katalog.md` und können deshalb nichts behaupten, was dort nicht steht. Verbessert jemand eine Klartext-Fassung, ist der nächste Lauf aktuell. Das Skript braucht Pillow; der Skill selbst kommt weiterhin ohne Fremdpakete aus.
+
 ## Anregungen
 
 Der Aufbau als Skill mit Prüfliste, der Gedanke, beim Überarbeiten zuerst die Stimme des Autors zu sichern, und der Portabilitätstest stammen aus [no-ai-slop](https://github.com/petergyang/no-ai-slop) von Peter Yang (MIT). Übernommen sind die Gedanken, nicht der Text.
@@ -132,5 +144,7 @@ skills/daitsch/
   tests/                  Testtexte für den Selbsttest
 adapters/                 Erzeugt, eingecheckt
 tools/build_adapters.py   Erzeugt adapters/ aus dem KERN-Block
+tools/check_version.py    Hält Tag und Codex-Manifest zusammen
+tools/karussell.py        Erzeugt PDF-Folien aus dem Katalog
 .codex-plugin/            Plugin-Manifest für Codex
 ```
