@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Hält die Versionsangaben zusammen.
 
-Zwei Stellen tragen eine Version: der Git-Tag und .codex-plugin/plugin.json.
-Laufen sie auseinander, installiert jemand über Codex eine andere Fassung als
-die, die das Release verspricht.
+Vier Stellen tragen eine Version: der Git-Tag, das Codex-Manifest, das
+Plugin-Manifest und der Marktplatzeintrag. Laufen sie auseinander, installiert
+jemand eine andere Fassung als die, die das Release verspricht.
 
     python3 tools/check_version.py            # gegen den neuesten Tag
     python3 tools/check_version.py v1.2.0     # gegen einen geplanten Tag
@@ -17,7 +17,50 @@ import sys
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-MANIFEST = WURZEL / ".codex-plugin" / "plugin.json"
+
+
+def lesen(pfad: Path):
+    return json.loads(pfad.read_text(encoding="utf-8"))
+
+
+def versionen(fehler: list[str]) -> dict[str, str]:
+    """Sammelt jede Stelle, die eine Version trägt."""
+    gefunden: dict[str, str] = {}
+
+    codex = WURZEL / ".codex-plugin" / "plugin.json"
+    plugin = WURZEL / ".claude-plugin" / "plugin.json"
+    markt = WURZEL / ".claude-plugin" / "marketplace.json"
+
+    for pfad, schluessel in ((codex, "Codex-Manifest"), (plugin, "Plugin-Manifest")):
+        if not pfad.exists():
+            fehler.append(f"{schluessel} fehlt: {pfad.relative_to(WURZEL)}")
+            continue
+        try:
+            daten = lesen(pfad)
+        except json.JSONDecodeError as e:
+            fehler.append(f"{schluessel} ist kein gültiges JSON: {e}")
+            continue
+        for feld in ("name", "version", "description"):
+            if not daten.get(feld):
+                fehler.append(f"{schluessel}: Feld {feld} fehlt oder ist leer.")
+        gefunden[schluessel] = str(daten.get("version", ""))
+        name = daten.get("name", "")
+        if name and not (WURZEL / "skills" / name / "SKILL.md").exists():
+            fehler.append(f"{schluessel} nennt {name!r}, aber skills/{name}/SKILL.md gibt es nicht.")
+
+    if markt.exists():
+        try:
+            daten = lesen(markt)
+            gefunden["Marktplatz"] = str(daten.get("metadata", {}).get("version", ""))
+            for eintrag in daten.get("plugins", []):
+                gefunden[f"Marktplatz/{eintrag.get('name')}"] = str(eintrag.get("version", ""))
+                quelle = WURZEL / eintrag.get("source", ".")
+                if not (quelle / ".claude-plugin" / "plugin.json").exists():
+                    fehler.append(f"Marktplatz zeigt auf {eintrag.get('source')!r}, dort fehlt plugin.json.")
+        except json.JSONDecodeError as e:
+            fehler.append(f"Marktplatz ist kein gültiges JSON: {e}")
+
+    return gefunden
 
 
 def neuester_tag() -> str | None:
@@ -28,45 +71,30 @@ def neuester_tag() -> str | None:
         )
     except FileNotFoundError:
         return None
-    tag = ergebnis.stdout.strip()
-    return tag or None
+    return ergebnis.stdout.strip() or None
 
 
 def main(argv: list[str]) -> int:
-    if not MANIFEST.exists():
-        print(f"Kein Manifest unter {MANIFEST}", file=sys.stderr)
-        return 2
-
-    try:
-        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as fehler:
-        print(f"plugin.json ist kein gültiges JSON: {fehler}", file=sys.stderr)
-        return 2
-
     fehler: list[str] = []
+    gefunden = versionen(fehler)
 
-    for feld in ("name", "version", "description", "skills"):
-        if not manifest.get(feld):
-            fehler.append(f"plugin.json: Feld {feld} fehlt oder ist leer.")
+    einzigartig = set(gefunden.values())
+    if len(einzigartig) > 1:
+        aufstellung = ", ".join(f"{k} {v}" for k, v in sorted(gefunden.items()))
+        fehler.append(f"Die Manifeste widersprechen sich: {aufstellung}")
 
-    name = manifest.get("name", "")
-    if name and not (WURZEL / "skills" / name / "SKILL.md").exists():
-        fehler.append(f"plugin.json nennt {name!r}, aber skills/{name}/SKILL.md gibt es nicht.")
-
-    version = str(manifest.get("version", ""))
+    version = next(iter(einzigartig), "")
     ausdruecklich = len(argv) > 1
     tag = argv[1] if ausdruecklich else neuester_tag()
     hinweis = ""
 
     if tag is None:
-        hinweis = f"plugin.json steht auf {version}. Noch kein Tag vorhanden, nichts zu vergleichen."
-    elif version != tag.lstrip("v"):
-        satz = f"Tag {tag} und plugin.json {version} passen nicht zusammen."
+        hinweis = f"Alle Stellen stehen auf {version}. Noch kein Tag vorhanden."
+    elif len(einzigartig) == 1 and version != tag.lstrip("v"):
+        satz = f"Tag {tag} und Manifeste {version} passen nicht zusammen."
         if ausdruecklich:
-            # Beim Taggen ist die Abweichung ein Fehler.
             fehler.append(satz)
         else:
-            # Zwischen Versionssprung und Tag ist sie der normale Zustand.
             hinweis = f"{satz} Solange der Tag noch fehlt, ist das erwartet."
 
     if fehler:
@@ -77,8 +105,8 @@ def main(argv: list[str]) -> int:
 
     if hinweis:
         print(hinweis)
-    elif tag is not None:
-        print(f"Versionsprüfung bestanden: Tag {tag} und plugin.json {version} passen zusammen.")
+    else:
+        print(f"Versionsprüfung bestanden: Tag {tag} und {len(gefunden)} Stellen stehen auf {version}.")
     return 0
 
 

@@ -33,7 +33,28 @@ Ohne Aufruf greift der Skill selbst, sobald die Beschreibung passt: bei deutsche
 
 ## Installation
 
-Am einfachsten geht es, indem du diesen Satz in ChatGPT, Claude Code, Codex oder deinen Agenten einfügst:
+Wo der Agent auf deinem Rechner läuft, liest er den Skill aus einem Ordner. Wo er in der Cloud läuft, braucht er eine Datei. Deshalb je Ziel ein eigener Weg.
+
+### Claude Code
+
+```
+/plugin marketplace add lord-helicon/daitsch
+/plugin install daitsch@daitsch
+```
+
+Aktualisieren später mit `/plugin update daitsch`.
+
+### Cowork
+
+`dist/daitsch.plugin` in den Chat ziehen und annehmen. Die Datei entsteht mit `python3 tools/paket.py`.
+
+### Claude im Browser und in der App
+
+`dist/daitsch-skill.zip` in den Einstellungen unter Skills hochladen. Der Chat läuft auf fremden Rechnern und kann keinen Ordner auf deinem Gerät lesen, deshalb der Umweg über die Datei.
+
+### Codex, Cursor, Copilot, Gemini CLI und weitere
+
+Diesen Satz in den Agenten einfügen:
 
 ```text
 Installiere den Skill daitsch global von https://github.com/lord-helicon/daitsch
@@ -56,8 +77,6 @@ bash install.sh
 ```
 
 Beide Skripte legen den Skill im vorhandenen Skill-Ordner ab (`~/.agents/skills/` oder `~/.claude/skills/`) und lassen anschließend den Selbsttest laufen. Mit `--ziel <pfad>` beziehungsweise `-Ziel <pfad>` geht es in einen beliebigen anderen Ordner.
-
-Für Codex liegt ein Plugin-Manifest in `.codex-plugin/plugin.json`.
 
 ## Andere Agenten
 
@@ -105,10 +124,12 @@ Der Selbsttest fängt kaputte Einträge ab. Er prüft, dass jeder Ausdruck kompi
 python3 skills/daitsch/scripts/klartext.py --selbsttest
 ```
 
-Dieselben Prüfungen laufen bei jedem Push über GitHub Actions, unter Python 3.9 und 3.12. Dazu wird geprüft, ob `adapters/` noch zu `SKILL.md` passt und ob die Version in `.codex-plugin/plugin.json` mit dem Tag übereinstimmt. Vor einem Release von Hand:
+Dieselben Prüfungen laufen bei jedem Push über GitHub Actions, unter Python 3.9 und 3.12. Dazu wird geprüft, ob `adapters/` noch zu `SKILL.md` passt.
+
+Vier Stellen tragen eine Versionsnummer: der Git-Tag, das Codex-Manifest, das Plugin-Manifest und der Marktplatzeintrag. `tools/check_version.py` hält sie zusammen und schlägt an, sobald eine abweicht. Vor einem Release von Hand:
 
 ```bash
-python3 tools/check_version.py v1.0.0
+python3 tools/check_version.py v1.2.0
 ```
 
 ## Folien aus dem Katalog
@@ -146,5 +167,6 @@ adapters/                 Erzeugt, eingecheckt
 tools/build_adapters.py   Erzeugt adapters/ aus dem KERN-Block
 tools/check_version.py    Hält Tag und Codex-Manifest zusammen
 tools/karussell.py        Erzeugt PDF-Folien aus dem Katalog
+tools/paket.py            Packt Plugin und Skill-Zip nach dist/
 .codex-plugin/            Plugin-Manifest für Codex
 ```

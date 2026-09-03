@@ -1,0 +1,19 @@
+{
+  "name": "daitsch",
+  "version": "1.2.0",
+  "description": "Deutsche Texte schreiben, prüfen und überarbeiten, ohne dass sie nach KI klingen. Katalog mit 74 Mustern, je Muster eine Klartext-Fassung und die Fälle, in denen das Muster richtig ist, dazu ein Prüfskript.",
+  "author": {
+    "name": "Alexander Rolli"
+  },
+  "homepage": "https://github.com/lord-helicon/daitsch",
+  "repository": "https://github.com/lord-helicon/daitsch",
+  "license": "MIT AND CC-BY-4.0",
+  "keywords": [
+    "deutsch",
+    "ki-floskeln",
+    "schreiben",
+    "lektorat",
+    "textpruefung",
+    "stil"
+  ]
+}
