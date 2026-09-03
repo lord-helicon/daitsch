@@ -44,6 +44,18 @@ Wo der Agent auf deinem Rechner läuft, liest er den Skill aus einem Ordner. Wo 
 
 Aktualisieren später mit `/plugin update daitsch`.
 
+Die Kurzform klont über SSH. Wer keinen SSH-Schlüssel bei GitHub hinterlegt hat, nimmt stattdessen die vollständige Adresse:
+
+```
+/plugin marketplace add https://github.com/lord-helicon/daitsch.git
+```
+
+Wer den Skill vorher über `npx skills add` oder ein Installationsskript eingerichtet hat, entfernt ihn zuerst. Sonst liegt `daitsch` zweimal vor, und ein Update erwischt womöglich nur eine der beiden Kopien.
+
+```bash
+rm -rf ~/.agents/skills/daitsch ~/.claude/skills/daitsch
+```
+
 ### Cowork
 
 `dist/daitsch.plugin` in den Chat ziehen und annehmen. Die Datei entsteht mit `python3 tools/paket.py`.
