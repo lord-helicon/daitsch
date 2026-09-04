@@ -6,7 +6,7 @@ Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von **
 
 Hinzugekommen sind hier die Klartext-Fassungen, die Angaben dazu, wann ein Muster zulässig ist, die maschinenlesbaren Erkennungsregeln und der Prüfer.
 
-![Ein Lauf des Prüfers auf einem Absatz voller Floskeln](docs/daitsch-terminal.png)
+![Ein Lauf des Prüfers auf einem Absatz voller Floskeln](https://raw.githubusercontent.com/lord-helicon/daitsch/main/docs/daitsch-terminal.png)
 
 ## Zum Namen
 
@@ -133,7 +133,7 @@ Dieselben Prüfungen laufen bei jedem Push über GitHub Actions, unter Python 3.
 Vier Stellen tragen eine Versionsnummer: der Git-Tag, das Codex-Manifest, das Plugin-Manifest und der Marktplatzeintrag. `tools/check_version.py` hält sie zusammen und schlägt an, sobald eine abweicht. Vor einem Release von Hand:
 
 ```bash
-python3 tools/check_version.py v1.2.0
+python3 tools/check_version.py v1.2.1
 ```
 
 ## Folien aus dem Katalog
