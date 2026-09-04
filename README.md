@@ -8,6 +8,8 @@ Hinzugekommen sind hier die Klartext-Fassungen, die Angaben dazu, wann ein Muste
 
 ![Ein Lauf des Prüfers auf einem Absatz voller Floskeln](https://raw.githubusercontent.com/lord-helicon/daitsch/main/docs/daitsch-terminal.png)
 
+**Nur die Liste lesen?** Die 74 Muster stehen mit Beispiel, Gegenfassung und Ausnahmen in [references/katalog.md](skills/daitsch/references/katalog.md). Dafür ist nichts zu installieren.
+
 ## In English
 
 German text written by an LLM is recognizable by a set of recurring patterns, and the German ones differ from the English ones. This repository catalogues 74 of them and ships a checker that finds them by line number.
@@ -134,7 +136,7 @@ Harte Funde sind eindeutig und ohne Kontexturteil zu beheben, etwa Geviertstrich
 
 ## Katalog erweitern
 
-Alle Regeln stehen in `skills/daitsch/references/katalog.md`, auch die des Prüfers. Er liest die Datei beim Start und hat keine eigene Wortliste, deshalb wird eine neue Floskel an genau einer Stelle ergänzt. Der Aufbau eines Eintrags steht oben in derselben Datei.
+Alle Regeln stehen in [`skills/daitsch/references/katalog.md`](skills/daitsch/references/katalog.md), auch die des Prüfers. Er liest die Datei beim Start und hat keine eigene Wortliste, deshalb wird eine neue Floskel an genau einer Stelle ergänzt. Der Aufbau eines Eintrags steht oben in derselben Datei.
 
 Der Selbsttest fängt kaputte Einträge ab. Er prüft, dass jeder Ausdruck kompiliert, dass jede Regel ihr eigenes Floskel-Beispiel findet, dass kein Klartext-Beispiel einen harten Fund auslöst, dass jede Metrik von einem Testtext ausgelöst wird und dass `tests/klartext.md` im Skillordner ohne Fund bleibt.
 
