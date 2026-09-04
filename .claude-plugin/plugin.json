@@ -1,6 +1,6 @@
 {
   "name": "daitsch",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Deutsche Texte schreiben, prüfen und überarbeiten, ohne dass sie nach KI klingen. Katalog mit 74 Mustern, je Muster eine Klartext-Fassung und die Fälle, in denen das Muster richtig ist, dazu ein Prüfskript.",
   "author": {
     "name": "Alexander Rolli"
