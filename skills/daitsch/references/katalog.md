@@ -24,7 +24,7 @@ Ein `regex`-Block wird zeilenweise verankert (`^` und `$` gelten je Zeile) und a
 
 ### negativ-parallelismus
 
-**Erkennung:** Eine Aussage wird verneint, damit die folgende wie eine Erkenntnis wirkt.
+**Erkennung:** Eine Aussage wird verneint, damit die folgende wie eine Erkenntnis wirkt. Dazu gehören drei Formen: „nicht X, sondern Y“, die Kurzform „X, nicht Y“ und die Fassung über zwei Sätze, „Die Frage ist nicht X. Die Frage ist Y.“ Der Ausdruck unten findet nur die erste. Die beiden anderen sind von einer Korrektur („Er kam am Montag, nicht am Dienstag“) maschinell nicht zu unterscheiden und müssen beim Lesen auffallen: Verdächtig wird es, wenn beide Seiten abstrakt sind und die verneinte Hälfte nur als Folie für die zweite dient.
 
 **Härte:** hart
 
@@ -36,7 +36,7 @@ Ein `regex`-Block wird zeilenweise verankert (`^` und `$` gelten je Zeile) und a
 
 **Klartext:** Die Software läuft seit März. Benutzt hat sie bisher niemand.
 
-**Zulässig:** Wenn der Leser sonst tatsächlich das Falsche annimmt und der Gegensatz die Korrektur trägt.
+**Zulässig:** Wenn der Leser sonst tatsächlich das Falsche annimmt und der Gegensatz die Korrektur trägt. Die Kurzform ist in sachlichen Richtigstellungen der Normalfall und bleibt dort stehen.
 
 ### nicht-nur-sondern-auch
 
