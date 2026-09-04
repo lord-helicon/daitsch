@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Deutsche Texte ohne KI-Floskeln. Katalog, Prüfskript und Adapter für beliebige Agenten.",
-    "version": "1.2.1"
+    "version": "1.2.2"
   },
   "plugins": [
     {
       "name": "daitsch",
       "source": "./",
       "description": "Deutsche Texte schreiben, prüfen und überarbeiten, ohne dass sie nach KI klingen. 74 Muster mit Klartext-Fassung und den Fällen, in denen das Muster richtig ist.",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Alexander Rolli"
       }

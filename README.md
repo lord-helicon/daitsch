@@ -147,7 +147,7 @@ Dieselben Prüfungen laufen bei jedem Push über GitHub Actions, unter Python 3.
 Vier Stellen tragen eine Versionsnummer: der Git-Tag, das Codex-Manifest, das Plugin-Manifest und der Marktplatzeintrag. `tools/check_version.py` hält sie zusammen und schlägt an, sobald eine abweicht. Vor einem Release von Hand:
 
 ```bash
-python3 tools/check_version.py v1.2.1
+python3 tools/check_version.py v1.2.2
 ```
 
 ## Folien aus dem Katalog

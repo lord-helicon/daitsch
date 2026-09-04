@@ -352,23 +352,34 @@ Es sei angemerkt
 **Härte:** weich
 
 ```wortliste
-ermöglich*
-optimier*
-förder*
-stärk*
-unterstreich*
-verdeutlich*
-adressier*
-vorantreib*
-begleit*
-abbild*
+ermöglicht
+ermöglichen
+optimiert
+optimieren
+fördert
+fördern
+stärkt
+stärken
+unterstreicht
+unterstreichen
+verdeutlicht
+verdeutlichen
+adressiert
+adressieren
+vorantreibt
+vorantreiben
+treibt voran
+begleitet
+begleiten
+abbildet
+abbilden
 ```
 
 **Floskel:** Die Lösung ermöglicht eine effizientere Zusammenarbeit.
 
 **Klartext:** Zwei Personen können dieselbe Datei gleichzeitig bearbeiten.
 
-**Zulässig:** Wenn Gegenstand und Wirkung im Satz stehen: Der Schlüssel ermöglicht den Zugang zum Serverraum.
+**Zulässig:** Wenn Gegenstand und Wirkung im Satz stehen: Der Schlüssel ermöglicht den Zugang zum Serverraum. Die Liste nennt nur Verbformen, weil die Wortstämme sonst auch Substantive wie Abbildung, Optimierung oder Förderung treffen, die nichts behaupten.
 
 ---
 
