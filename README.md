@@ -6,6 +6,8 @@ Die Musterlisten beruhen auf „KI-Sprachmuster im Deutschen vermeiden“ von **
 
 Hinzugekommen sind hier die Klartext-Fassungen, die Angaben dazu, wann ein Muster zulässig ist, die maschinenlesbaren Erkennungsregeln und der Prüfer.
 
+![Ein Lauf des Prüfers auf einem Absatz voller Floskeln](docs/daitsch-terminal.png)
+
 ## Zum Namen
 
 Die pfälzische Wikipedia beginnt ihren Artikel über die deutsche Sprache mit den Worten: „Die Daitsch Sprooch (kerz: Daitsch) is e germanische Sprooch.“<sup>[1]</sup>
@@ -42,19 +44,9 @@ Wo der Agent auf deinem Rechner läuft, liest er den Skill aus einem Ordner. Wo 
 /plugin install daitsch@daitsch
 ```
 
-Aktualisieren später mit `/plugin update daitsch`.
+`daitsch@daitsch` ist kein Tippfehler. Vor dem Klammeraffen steht das Plugin, dahinter der Marktplatz, und beide heißen hier gleich.
 
-Die Kurzform klont über SSH. Wer keinen SSH-Schlüssel bei GitHub hinterlegt hat, nimmt stattdessen die vollständige Adresse:
-
-```
-/plugin marketplace add https://github.com/lord-helicon/daitsch.git
-```
-
-Wer den Skill vorher über `npx skills add` oder ein Installationsskript eingerichtet hat, entfernt ihn zuerst. Sonst liegt `daitsch` zweimal vor, und ein Update erwischt womöglich nur eine der beiden Kopien.
-
-```bash
-rm -rf ~/.agents/skills/daitsch ~/.claude/skills/daitsch
-```
+Aktualisieren später mit `/plugin update daitsch`. Wenn etwas klemmt, steht der Fall unter [Wenn es nicht klappt](#wenn-es-nicht-klappt).
 
 ### Cowork
 
@@ -156,6 +148,26 @@ python3 tools/karussell.py --liste
 
 Die Folien entstehen aus `katalog.md` und können deshalb nichts behaupten, was dort nicht steht. Verbessert jemand eine Klartext-Fassung, ist der nächste Lauf aktuell. Das Skript braucht Pillow; der Skill selbst kommt weiterhin ohne Fremdpakete aus.
 
+## Wenn es nicht klappt
+
+**Der Marktplatz lässt sich nicht hinzufügen.** Die Kurzform `lord-helicon/daitsch` klont über SSH und verlangt einen Schlüssel bei GitHub. Mit der vollständigen Adresse geht es ohne:
+
+```
+/plugin marketplace add https://github.com/lord-helicon/daitsch.git
+```
+
+**Git kommt nicht nach außen.** Dann `daitsch-skill.zip` aus dem [neuesten Release](https://github.com/lord-helicon/daitsch/releases/latest) herunterladen, auspacken und den Ordner `daitsch` nach `~/.claude/skills/` legen. Kein Git, kein Python, kein Konto.
+
+**Der Skill reagiert nicht oder doppelt.** Wer ihn vorher über `npx skills add` oder ein Installationsskript eingerichtet hat, hat ihn zweimal. Welcher gewinnt, ist nicht vorhersagbar, und ein Update erwischt womöglich nur eine Kopie:
+
+```bash
+rm -rf ~/.agents/skills/daitsch ~/.claude/skills/daitsch
+```
+
+**Der Prüfer findet seinen Katalog nicht.** Er sucht ihn über den eigenen Pfad, also `../references/katalog.md` neben `scripts/`. Wer nur die Skriptdatei kopiert, muss den Katalog mit `--katalog <pfad>` nachweisen.
+
+**Nach der Installation ist der Skill noch nicht da.** Sitzung neu starten.
+
 ## Anregungen
 
 Der Aufbau als Skill mit Prüfliste, der Gedanke, beim Überarbeiten zuerst die Stimme des Autors zu sichern, und der Portabilitätstest stammen aus [no-ai-slop](https://github.com/petergyang/no-ai-slop) von Peter Yang (MIT). Übernommen sind die Gedanken, nicht der Text.
@@ -180,5 +192,6 @@ tools/build_adapters.py   Erzeugt adapters/ aus dem KERN-Block
 tools/check_version.py    Hält Tag und Codex-Manifest zusammen
 tools/karussell.py        Erzeugt PDF-Folien aus dem Katalog
 tools/paket.py            Packt Plugin und Skill-Zip nach dist/
+tools/screenshot.py       Erzeugt das Bild oben aus einem echten Lauf
 .codex-plugin/            Plugin-Manifest für Codex
 ```

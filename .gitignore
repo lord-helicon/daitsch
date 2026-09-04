@@ -5,3 +5,4 @@ karussell.pdf
 dist/
 beitrag-linkedin.md
 *.png
+!docs/*.png
