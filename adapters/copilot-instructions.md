@@ -12,7 +12,7 @@ Diese Griffe decken den größten Teil ab. Alles Weitere steht im Katalog.
 
 | Statt der Floskel | Klartext |
 |---|---|
-| nicht X, sondern Y | Die Sache benennen, die zutrifft. Den Gegensatz nur, wenn der Leser sonst das Falsche annimmt. |
+| nicht X, sondern Y, auch als Kurzform X, nicht Y | Die Sache benennen, die zutrifft. Den Gegensatz nur, wenn der Leser sonst das Falsche annimmt. |
 | nicht nur X, sondern auch Y | Beide Punkte einzeln, jeder mit seiner eigenen Zahl. |
 | Mehrwert, Potenziale, Synergien, ganzheitlich, nahtlos, innovativ, robust | Die Verbesserung nennen: was vorher wie lange dauerte und was jetzt. |
 | sauber strukturiert, sauber getrennt, sauber gelöst | Sagen, was getrennt ist und wovon. |
