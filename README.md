@@ -8,6 +8,18 @@ Hinzugekommen sind hier die Klartext-Fassungen, die Angaben dazu, wann ein Muste
 
 ![Ein Lauf des Prüfers auf einem Absatz voller Floskeln](https://raw.githubusercontent.com/lord-helicon/daitsch/main/docs/daitsch-terminal.png)
 
+## In English
+
+German text written by an LLM is recognizable by a set of recurring patterns, and the German ones differ from the English ones. This repository catalogues 74 of them and ships a checker that finds them by line number.
+
+What makes it more than a banlist: every entry carries three things, the phrase to avoid, a plain-language replacement, and **the cases where the pattern is correct**. A dash is proper German typography, a section called Fazit belongs in a legal opinion, and hedged endings are right in a court filing. An agent that deletes by list alone leaves the text smoother and emptier than it found it, so the exceptions took more work than the patterns.
+
+Everything is in German, because the patterns are. If you write German with an LLM, this is for you.
+
+It installs as a Claude Code plugin, as a skill folder for Codex, Cursor, Gemini CLI and others, or as a plain instruction block for any system prompt. The checker needs Python and nothing else.
+
+The pattern collection comes from [Tobias Voßberg](https://www.iplaw.lol/ki-floskeln/), used with his permission, and goes back to [tropes.fyi](https://tropes.fyi/) by Ossama, which does the same job for English.
+
 ## Zum Namen
 
 Die pfälzische Wikipedia beginnt ihren Artikel über die deutsche Sprache mit den Worten: „Die Daitsch Sprooch (kerz: Daitsch) is e germanische Sprooch.“<sup>[1]</sup>
