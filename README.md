@@ -62,7 +62,9 @@ Aktualisieren später mit `/plugin update daitsch`. Wenn etwas klemmt, steht der
 
 ### Cowork
 
-`dist/daitsch.plugin` in den Chat ziehen und annehmen. Die Datei entsteht mit `python3 tools/paket.py`.
+`dist/daitsch.plugin` in den Chat ziehen und annehmen. Die Datei entsteht mit `python3 tools/paket.py`, oder sie liegt fertig am [neuesten Release](https://github.com/lord-helicon/daitsch/releases/latest).
+
+Geprüft mit 1.2.1: Cowork führt auch das Prüfskript aus, der Befund kommt dort mit Zeilennummern.
 
 ### Claude im Browser und in der App
 
