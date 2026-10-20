@@ -206,7 +206,7 @@ def absaetze_von(text: str) -> list[tuple[int, str]]:
     zeile = 1
     for block in re.split(r"\n\s*\n", text):
         inhalt = block.strip()
-        if inhalt and not inhalt.startswith("#") and not inhalt.startswith("|") and not _ist_liste(inhalt):
+        if inhalt and not inhalt.startswith("#") and not inhalt.startswith("|") and not _ist_liste(inhalt) and not re.match(r"^=+ .+ =+$", inhalt):
             versatz = block.index(inhalt.split("\n")[0])
             ergebnis.append((zeile + block[:versatz].count("\n"), inhalt))
         zeile += block.count("\n") + 2
@@ -371,12 +371,14 @@ def pruefen(text: str, regeln: list[Regel], nur_ausdruecke: bool = False) -> lis
     for regel in regeln:
         for ausdruck in regel.ausdruecke:
             for treffer in ausdruck.finditer(maskiert):
-                if treffer.start() in [s for m, s in gesehen if m == regel.muster]:
+                # Eine Klammergruppe grenzt die Fundstelle ein; der Rest des Ausdrucks ist Kontext.
+                anfang, ende = (treffer.span(1) if treffer.lastindex else treffer.span())
+                if (regel.muster, anfang) in gesehen:
                     continue
-                gesehen.add((regel.muster, treffer.start()))
-                zeile = maskiert.count("\n", 0, treffer.start()) + 1
-                spalte = treffer.start() - (maskiert.rfind("\n", 0, treffer.start()) + 1) + 1
-                roh = text[treffer.start():treffer.end()]
+                gesehen.add((regel.muster, anfang))
+                zeile = maskiert.count("\n", 0, anfang) + 1
+                spalte = anfang - (maskiert.rfind("\n", 0, anfang) + 1) + 1
+                roh = text[anfang:ende]
                 fundstelle = " ".join(roh.split())[:70]
                 funde.append(Fund(regel.muster, regel.haerte, zeile, spalte, fundstelle, regel.erkennung))
 
@@ -397,6 +399,15 @@ def pruefen(text: str, regeln: list[Regel], nur_ausdruecke: bool = False) -> lis
 
     funde.sort(key=lambda f: (f.zeile, f.spalte, f.muster))
     return funde
+
+
+def lesen(daten: bytes, name: str) -> str:
+    """UTF-8, mit Rückfall auf Windows-1252 für Exporte aus Word und älteren Programmen."""
+    try:
+        return daten.decode("utf-8")
+    except UnicodeDecodeError:
+        print(f"Hinweis: {name} ist nicht UTF-8 kodiert, gelesen als Windows-1252. Besser in UTF-8 speichern.", file=sys.stderr)
+        return daten.decode("cp1252", errors="replace")
 
 
 def filtern(funde: list[Fund], haerte: str) -> list[Fund]:
@@ -516,6 +527,17 @@ def selbsttest(regeln: list[Regel]) -> int:
     else:
         fehler.append("tests/klartext.md fehlt.")
 
+    # Gute menschliche Prosa darf weiche Funde haben, aber keinen harten. Ein harter Fund
+    # heißt laut SKILL.md: ohne Urteil beheben. Was auf Kafka anschlägt, ist nicht hart.
+    mensch = WURZEL / "tests" / "mensch.md"
+    if mensch.exists():
+        harte = [f for f in pruefen(mensch.read_text(encoding="utf-8"), regeln) if f.haerte == "hart"]
+        if harte:
+            zeilen = ", ".join(f"{f.muster} (Zeile {f.zeile}: {f.fundstelle[:30]})" for f in harte)
+            fehler.append(f"tests/mensch.md löst harte Funde aus, die Regel ist zu hart eingestuft: {zeilen}")
+    else:
+        fehler.append("tests/mensch.md fehlt.")
+
     if fehler:
         print("Selbsttest fehlgeschlagen:\n")
         for eintrag in fehler:
@@ -526,7 +548,7 @@ def selbsttest(regeln: list[Regel]) -> int:
     mit_metrik = sum(1 for r in regeln if r.metrik)
     print(
         f"Selbsttest bestanden: {len(regeln)} Muster, davon {mit_ausdruck} mit Ausdruck "
-        f"und {mit_metrik} mit Metrik. Beide Testtexte verhalten sich wie erwartet."
+        f"und {mit_metrik} mit Metrik. Alle drei Testtexte verhalten sich wie erwartet."
     )
     return 0
 
@@ -568,7 +590,7 @@ def main(argv: list[str] | None = None) -> int:
     ergebnisse: list[tuple[str, list[Fund]]] = []
     for name in args.dateien:
         if name == "-":
-            text, anzeige = sys.stdin.read(), "stdin"
+            text, anzeige = lesen(sys.stdin.buffer.read(), "stdin"), "stdin"
         else:
             datei = Path(name)
             if not datei.exists():
@@ -577,7 +599,7 @@ def main(argv: list[str] | None = None) -> int:
             if datei.suffix.lower() not in FLIESSTEXT and not args.erzwingen:
                 print(f"Übersprungen, sieht nach Quelltext aus: {name} (mit --erzwingen trotzdem prüfen)", file=sys.stderr)
                 continue
-            text, anzeige = datei.read_text(encoding="utf-8"), name
+            text, anzeige = lesen(datei.read_bytes(), name), name
         ergebnisse.append((anzeige, filtern(pruefen(text, regeln), args.haerte)))
 
     if args.json:

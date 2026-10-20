@@ -8,11 +8,11 @@ Hinzugekommen sind hier die Klartext-Fassungen, die Angaben dazu, wann ein Muste
 
 ![Ein Lauf des Prüfers auf einem Absatz voller Floskeln](https://raw.githubusercontent.com/lord-helicon/daitsch/main/docs/daitsch-terminal.png)
 
-**Nur die Liste lesen?** Die 74 Muster stehen mit Beispiel, Gegenfassung und Ausnahmen in [references/katalog.md](skills/daitsch/references/katalog.md). Dafür ist nichts zu installieren.
+**Nur die Liste lesen?** Die 76 Muster stehen mit Beispiel, Gegenfassung und Ausnahmen in [references/katalog.md](skills/daitsch/references/katalog.md). Dafür ist nichts zu installieren.
 
 ## In English
 
-German text written by an LLM is recognizable by a set of recurring patterns, and the German ones differ from the English ones. This repository catalogues 74 of them and ships a checker that finds them by line number.
+German text written by an LLM is recognizable by a set of recurring patterns, and the German ones differ from the English ones. This repository catalogues 76 of them and ships a checker that finds them by line number.
 
 What makes it more than a banlist: every entry carries three things, the phrase to avoid, a plain-language replacement, and **the cases where the pattern is correct**. A dash is proper German typography, a section called Fazit belongs in a legal opinion, and hedged endings are right in a court filing. An agent that deletes by list alone leaves the text smoother and emptier than it found it, so the exceptions took more work than the patterns.
 
@@ -149,7 +149,7 @@ Dieselben Prüfungen laufen bei jedem Push über GitHub Actions, unter Python 3.
 Vier Stellen tragen eine Versionsnummer: der Git-Tag, das Codex-Manifest, das Plugin-Manifest und der Marktplatzeintrag. `tools/check_version.py` hält sie zusammen und schlägt an, sobald eine abweicht. Vor einem Release von Hand:
 
 ```bash
-python3 tools/check_version.py v1.2.3
+python3 tools/check_version.py v1.3.0
 ```
 
 ## Folien aus dem Katalog
@@ -199,7 +199,7 @@ Die Textteile (`SKILL.md`, `references/`, `adapters/`, `tests/`) stehen unter CC
 ```
 skills/daitsch/
   SKILL.md                Kanonische Quelle im offenen Agent-Skills-Format
-  references/katalog.md   74 Muster, zugleich Regelquelle des Prüfers
+  references/katalog.md   76 Muster, zugleich Regelquelle des Prüfers
   references/pruefliste.md  Fragen nach dem Überarbeiten, die kein Ausdruck stellt
   scripts/klartext.py     Prüfer
   tests/                  Testtexte für den Selbsttest
