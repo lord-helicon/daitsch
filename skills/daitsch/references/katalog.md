@@ -1,6 +1,6 @@
 # Musterkatalog
 
-Rund 75 Muster, an denen deutsche KI-Texte erkennbar sind. Jeder Eintrag nennt die Floskel und die Klartext-Fassung daneben, dazu die Fälle, in denen das Muster richtig ist.
+76 Muster, an denen deutsche KI-Texte erkennbar sind. Jeder Eintrag nennt die Floskel und die Klartext-Fassung daneben, dazu die Fälle, in denen das Muster richtig ist.
 
 Diese Datei ist zugleich die Regelquelle für `scripts/klartext.py`. Der Prüfer liest sie beim Start. Wer eine Floskel ergänzt, ergänzt sie hier, und nur hier.
 
@@ -16,7 +16,7 @@ Die Überschrift ist die Muster-ID, die der Prüfer meldet. Darunter:
 
 In der Wortliste steht eine Wendung je Zeile, Groß- und Kleinschreibung wird ignoriert. `*` am Wortende deckt die Beugung ab: `innovativ*` findet auch `innovative` und `innovativen`.
 
-Ein `regex`-Block wird zeilenweise verankert (`^` und `$` gelten je Zeile) und achtet auf Groß- und Kleinschreibung. Wo sie egal ist, steht `(?i)` am Anfang des Ausdrucks.
+Ein `regex`-Block wird zeilenweise verankert (`^` und `$` gelten je Zeile) und achtet auf Groß- und Kleinschreibung. Wo sie egal ist, steht `(?i)` am Anfang des Ausdrucks. Enthält der Ausdruck eine Klammergruppe, meldet der Prüfer nur deren Treffer als Fundstelle; so lässt sich der Kontext einer Zeile prüfen, ohne dass die ganze Zeile als Fund erscheint.
 
 ---
 
@@ -26,7 +26,7 @@ Ein `regex`-Block wird zeilenweise verankert (`^` und `$` gelten je Zeile) und a
 
 **Erkennung:** Eine Aussage wird verneint, damit die folgende wie eine Erkenntnis wirkt. Dazu gehören drei Formen: „nicht X, sondern Y“, die Kurzform „X, nicht Y“ und die Fassung über zwei Sätze, „Die Frage ist nicht X. Die Frage ist Y.“ Der Ausdruck unten findet nur die erste. Die beiden anderen sind von einer Korrektur („Er kam am Montag, nicht am Dienstag“) maschinell nicht zu unterscheiden und müssen beim Lesen auffallen: Verdächtig wird es, wenn beide Seiten abstrakt sind und die verneinte Hälfte nur als Folie für die zweite dient.
 
-**Härte:** hart
+**Härte:** weich
 
 ```regex
 (?i)\bnicht\s+(?!nur\b)[^.!?;]{2,60},\s*sondern
@@ -36,13 +36,13 @@ Ein `regex`-Block wird zeilenweise verankert (`^` und `$` gelten je Zeile) und a
 
 **Klartext:** Die Software läuft seit März. Benutzt hat sie bisher niemand.
 
-**Zulässig:** Wenn der Leser sonst tatsächlich das Falsche annimmt und der Gegensatz die Korrektur trägt. Die Kurzform ist in sachlichen Richtigstellungen der Normalfall und bleibt dort stehen.
+**Zulässig:** Wenn der Leser sonst tatsächlich das Falsche annimmt und der Gegensatz die Korrektur trägt. Die Kurzform ist in sachlichen Richtigstellungen der Normalfall und bleibt dort stehen. Die Regel ist weich, weil die Wendung in guter Sachprosa häufig vorkommt: Auf 48.000 Wörtern Lexikontext fand der Prüfer sie 23-mal, und keine Stelle war zu beanstanden.
 
 ### nicht-nur-sondern-auch
 
 **Erkennung:** Eine Addition wird als Steigerung inszeniert.
 
-**Härte:** hart
+**Härte:** weich
 
 ```regex
 (?i)\bnicht\s+nur\b[^.!?;]{2,80}\bsondern\b[^.!?;]{0,40}\bauch\b
@@ -52,7 +52,7 @@ Ein `regex`-Block wird zeilenweise verankert (`^` und `$` gelten je Zeile) und a
 
 **Klartext:** Die Lösung spart vier Minuten je Vorgang. Die Fehlerquote fiel von sechs auf zwei Prozent.
 
-**Zulässig:** Wenn der zweite Punkt wirklich überrascht, weil der erste ihn ausschließen würde.
+**Zulässig:** Wenn der zweite Punkt wirklich überrascht, weil der erste ihn ausschließen würde. Weich aus demselben Grund wie der negative Parallelismus: in menschlicher Sachprosa gewöhnlich.
 
 ### verneinungs-dreiklang
 
@@ -814,6 +814,30 @@ Der Weg ist das Ziel
 
 **Klartext:** Die Abteilung hat zwei Jahre gebraucht, bis sie Zahlen ohne Rückfrage weitergibt.
 
+### ueberakademisierter-humor
+
+**Erkennung:** Alltagskomik entsteht, indem ein trivialer Gegenstand mit gesellschaftstheoretischer, juristischer oder betriebswirtschaftlicher Sprache beschrieben wird. Einmal kann das sitzen. Auffällig wird die Wiederholung, und verräterisch ist es, wenn die Pointe anschließend erklärt wird.
+
+**Härte:** weich
+
+**Floskel:** Der Warentrenner ist eine wortlose Vereinbarung über Eigentum, Abstand und gesellschaftliche Ordnung.
+
+**Klartext:** Der Warentrenner liegt da, damit deine Milch nicht auf meiner Rechnung landet.
+
+**Zulässig:** Als einmaliger Griff in einem Text, der sonst anders witzig ist. Nie als Grundton.
+
+### kontrollierte-albernheit
+
+**Erkennung:** Auch der Witz bleibt glatt und risikofrei. Er wird angekündigt, vollständig ausgeführt und am Ende abgerundet, damit niemand ihn missverstehen kann. Menschlicher Humor lässt etwas offen, bricht ab oder geht einen Schritt zu weit.
+
+**Härte:** weich
+
+**Floskel:** Bevor wir einen externen Berater für botanische Krisenkommunikation beauftragen, würde ich die Pflanze gern an einen helleren Platz stellen.
+
+**Klartext:** Die Pflanze braucht Licht. Oder einen Nachruf.
+
+**Zulässig:** In Texten, die ungefährlich sein müssen, etwa im Kundenkontakt eines Unternehmens ohne Spielraum für Missverständnisse.
+
 ---
 
 ## Formatierung
@@ -891,14 +915,14 @@ Der Weg ist das Ziel
 **Härte:** hart
 
 ```regex
-[→➜⇒▶✔✓★☑✦❯]
+^(?![^\n]*[+=₀-₉])(?!\s*[→➜⇒▶✔✓★☑✦❯]\s*$)[^\n]*?([→➜⇒▶✔✓★☑✦❯])
 ```
 
 **Floskel:** Input → Verarbeitung → Output
 
 **Klartext:** Die Daten kommen aus dem Import, werden geprüft und landen in der Tabelle.
 
-**Zulässig:** In Diagrammen, in Code und dort, wo der Pfeil eine Richtung bezeichnet, die im Fließtext umständlich wäre.
+**Zulässig:** In Diagrammen, in Code und dort, wo der Pfeil eine Richtung bezeichnet, die im Fließtext umständlich wäre. Zeilen, die wie Formeln aussehen (mit Plus, Gleichheitszeichen oder tiefgestellten Ziffern) und Zeilen, die nur aus einem Pfeil bestehen, nimmt der Ausdruck aus; Reaktionsgleichungen sind keine Dekoration.
 
 ### emoji-gliederung
 
@@ -1131,12 +1155,12 @@ Der Mensch bleibt der entscheidende
 
 ### erzwungene-ausgewogenheit
 
-**Erkennung:** Erst Positives, dann Herausforderungen, am Ende eine optimistische Mitte, ohne Gewichtung.
+**Erkennung:** Erst Positives, dann Herausforderungen, am Ende eine optimistische Mitte, ohne Gewichtung. Das „einerseits, andererseits“ gehört dazu, steht aber nicht im Ausdruck: In Geschichtsschreibung und Gutachten ist es die normale Form einer Abwägung und muss beim Lesen beurteilt werden.
 
 **Härte:** hart
 
 ```regex
-(?i)\b(?:Trotz\s+dieser\s+Herausforderungen|Einerseits\b[^.!?]{5,80}\bandererseits|birgt\s+jedoch\s+auch\s+Risiken|Chancen\s+und\s+Risiken\s+gleichermaßen)\b
+(?i)\b(?:Trotz\s+dieser\s+Herausforderungen|birgt\s+jedoch\s+auch\s+Risiken|Chancen\s+und\s+Risiken\s+gleichermaßen)\b
 ```
 
 **Floskel:** Trotz dieser Herausforderungen bietet die Technologie erhebliche Chancen.
@@ -1147,13 +1171,15 @@ Der Mensch bleibt der entscheidende
 
 **Erkennung:** Absätze wiederholen sich fast wörtlich, besonders in langen Ausgaben.
 
-**Härte:** hart
+**Härte:** weich
 
 **Metrik:** doppelung
 
 **Floskel:** Absatz 3 und Absatz 17 sagen dasselbe in leicht anderen Worten.
 
 **Klartext:** Jede Aussage steht einmal.
+
+**Zulässig:** Eine Einleitung, die den Hauptteil vorwegnimmt, wiederholt sich absichtlich. Die Metrik kann das nicht von einem Modell unterscheiden, das den Faden verlor, deshalb weich.
 
 ---
 

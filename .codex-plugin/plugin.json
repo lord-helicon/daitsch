@@ -1,7 +1,7 @@
 {
   "name": "daitsch",
-  "version": "1.2.3",
-  "description": "Entfernt 74 Muster aus deutschen Texten, an denen KI-Sprache erkennbar ist.",
+  "version": "1.3.0",
+  "description": "Entfernt 76 Muster aus deutschen Texten, an denen KI-Sprache erkennbar ist.",
   "author": {
     "name": "Alexander Rolli",
     "url": "https://github.com/lord-helicon"
@@ -14,7 +14,7 @@
   "interface": {
     "displayName": "dAItsch",
     "shortDescription": "Deutsche Texte ohne KI-Floskeln",
-    "longDescription": "Deutsche KI-Texte sind an wiederkehrenden Mustern erkennbar: „nicht X, sondern Y“, Mehrwert, sauber strukturiert, Geviertstriche, der hohle Schlusssatz.\n\ndAItsch kennt 74 davon. Zu jedem Muster gehört eine Klartext-Fassung und die Fälle, in denen das Muster richtig ist, damit aus der Korrektur keine Überkorrektur wird.\n\nDrei Modi: schreiben, prüfen ohne den Text anzufassen, überarbeiten mit Bericht darüber, was bewusst stehen blieb. Ein Prüfskript meldet Fundstellen mit Zeilennummer.\n\nDie Mustersammlung stammt von Tobias Voßberg (www.iplaw.lol/ki-floskeln) und wird mit seiner Zustimmung verwendet.",
+    "longDescription": "Deutsche KI-Texte sind an wiederkehrenden Mustern erkennbar: „nicht X, sondern Y“, Mehrwert, sauber strukturiert, Geviertstriche, der hohle Schlusssatz.\n\ndAItsch kennt 76 davon. Zu jedem Muster gehört eine Klartext-Fassung und die Fälle, in denen das Muster richtig ist, damit aus der Korrektur keine Überkorrektur wird.\n\nDrei Modi: schreiben, prüfen ohne den Text anzufassen, überarbeiten mit Bericht darüber, was bewusst stehen blieb. Ein Prüfskript meldet Fundstellen mit Zeilennummer.\n\nDie Mustersammlung stammt von Tobias Voßberg (www.iplaw.lol/ki-floskeln) und wird mit seiner Zustimmung verwendet.",
     "developerName": "Alexander Rolli",
     "category": "Productivity",
     "capabilities": ["Schreiben", "Prüfen", "Überarbeiten"],

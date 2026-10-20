@@ -46,7 +46,7 @@ Register, Anrede und erlaubte Muster hängen im Deutschen davon ab, für wen der
 Gilt, sobald deutscher Text entsteht: Mail, Post, Artikel, Bericht, Dokumentation, Angebot.
 
 1. Text schreiben, mit den Kernregeln im Kopf.
-2. Entwurf in eine Datei legen und prüfen: `python3 scripts/klartext.py entwurf.md`
+2. Entwurf in eine Datei legen und prüfen: `python3 scripts/klartext.py entwurf.md`. Der Pfad gilt relativ zum Ordner dieses Skills; von anderswo den vollen Pfad angeben.
 3. Jeden harten Fund beheben. Zu jedem weichen Fund entscheiden: beheben, oder als zulässig stehen lassen und dabei den Fall aus dem Katalogeintrag nennen.
 
 Fertig ist der Text, wenn kein harter Fund offen ist und jeder weiche Fund entweder behoben oder begründet ist.
